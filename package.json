@@ -1,0 +1,38 @@
+{
+    "name"                      : "thumbnailer",
+    "description"               : "vips wrapper for node.js",
+    "author"                    : "idealista",
+    "version"                   : "0.2.2",
+    "private"                   : false,
+    "dependencies"              : {
+        "nan"                       : "^2.2.0",
+        "grunt-cli"                 : "^0.1.13"
+    },
+    "devDependencies"           : {
+        "grunt-contrib-jshint"      : "~0.8.0",
+        "grunt-contrib-nodeunit"    : "~0.3.2"
+    },
+    "engines"                   : {
+        "node"                      : ">=0.8"
+    },
+    "keywords"                  : [
+        "thumbnailer",
+        "vips",
+        "image",
+        "thumb"
+    ],
+    "repository"                : {
+        "type"                      : "git",
+        "url"                       : "git+https://github.com/idealista-tech/thumbnailer.git"
+    },
+    "license"                   : "MIT",
+    "main"                      : "index",
+    "scripts"                   : {
+        "install"                   : "make",
+        "test"                      : "grunt",
+        "test-memleak"              : "node test/memoryleak/memoryleak.js"
+    },
+    "publishConfig" : {
+        "registry": "http://hub1.pro.all.sys.idealista"
+    }
+}
