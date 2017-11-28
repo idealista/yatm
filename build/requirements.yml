@@ -1,0 +1,11 @@
+- src: idealista.exiv2-role
+  version: 1.0.0
+  name: exiv2
+
+- src: idealista.vips-role
+  version: 1.0.0
+  name: vips
+
+- src: idealista.nodejs-role
+  version: 1.0.0
+  name: nodejs

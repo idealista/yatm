@@ -1,19 +1,20 @@
 {
-    "name"                      : "thumbnailer",
-    "description"               : "vips wrapper for node.js",
+    "name"                      : "yatm",
+    "description"               : "libvips wrapper for Node.js",
     "author"                    : "idealista",
-    "version"                   : "0.2.2",
+    "version"                   : "1.0.0",
     "private"                   : false,
     "dependencies"              : {
-        "nan"                       : "^2.2.0",
-        "grunt-cli"                 : "^0.1.13"
+        "nan"                       : "^2.2.0"
     },
     "devDependencies"           : {
-        "grunt-contrib-jshint"      : "~0.8.0",
-        "grunt-contrib-nodeunit"    : "~0.3.2"
+        "grunt"                     : "^1.0.1",
+        "grunt-cli"                 : "^1.2.0",
+        "grunt-contrib-jshint"      : "^1.1.0",
+        "grunt-contrib-nodeunit"    : "^1.0.0"
     },
     "engines"                   : {
-        "node"                      : ">=0.8"
+        "node"                      : ">=4.5.0"
     },
     "keywords"                  : [
         "thumbnailer",
@@ -23,12 +24,11 @@
     ],
     "repository"                : {
         "type"                      : "git",
-        "url"                       : "git+https://github.com/idealista-tech/thumbnailer.git"
+        "url"                       : "git+https://github.com/idealista/thumbnailer.git"
     },
-    "license"                   : "MIT",
-    "main"                      : "index",
+    "license"                   : "Apache-2.0",
+    "main"                      : "index.js",
     "scripts"                   : {
-        "install"                   : "make",
         "test"                      : "grunt",
         "test-memleak"              : "node test/memoryleak/memoryleak.js"
     },

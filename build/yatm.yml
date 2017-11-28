@@ -1,0 +1,82 @@
+---
+
+- hosts: yatm
+  serial: 1
+
+  roles:
+    - exiv2
+    - vips
+    - nodejs
+
+  tasks:
+    - name: YATM | Install Build Utils
+      apt:
+        pkg: "{{ item }}"
+        state: present
+      with_items:
+        - valgrind
+        - wget
+
+
+    - name: YATM | Copy sources
+      copy:
+        src: "{{ playbook_dir }}/../{{ item }}"
+        dest: "{{ yatm_install_path }}"
+      changed_when: false
+      with_items: "{{ yatm_build_files }}"
+
+    - name: YATM | Create Deps
+      file:
+        path: "{{ yatm_install_path }}/deps/{{ item }}"
+        recurse: yes
+        state: directory
+      with_items:
+        - lib
+        - include
+
+    - name: YATM | Include libraries
+      shell: "cp -R {{ item }}* {{ yatm_install_path }}/deps/lib"
+      changed_when: false
+      with_items: "{{ yatm_build_libraries }}"
+
+    - name: YATM | Include headers
+      shell: "cp -R {{ item }} {{ yatm_install_path }}/deps/include"
+      changed_when: false
+      with_items: "{{ yatm_build_includes }}"
+      tags:
+        - skip_ansible_lint
+
+    - name: YATM | Install node-gyp
+      npm:
+        name:  node-gyp
+        global: yes
+
+    - name: YATM | Link node-gyp binary
+      file:
+        src: "/opt/nodejs/bin/node-gyp"
+        dest: "/usr/bin/node-gyp"
+        state: link
+
+    - name: YATM | Build
+      command: "{{ item }}"
+      args:
+        chdir: "{{ yatm_install_path }}"
+      changed_when: false
+      with_items:
+        - npm install
+        - make
+        - npm test
+        - chmod +x test/memoryleak/memoryleak.sh
+        - ./test/memoryleak/memoryleak.sh
+
+    - name: YATM | Check Memory Leak Result
+      command: "grep -Fq 'ERROR SUMMARY: 0 errors from 0 contexts' reports/memoryleak.txt"
+      changed_when: false
+      args:
+        chdir: "{{ yatm_install_path }}"
+      register: memoryleak_check
+
+    - name: YATM | Assert No errors in memory check
+      assert:
+        that:
+          - memoryleak_check.rc == 0
