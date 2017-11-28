@@ -1,6 +1,6 @@
 {
     "name"                      : "yatm",
-    "description"               : "libvips wrapper for Node.js",
+    "description"               : "Yet Another Thumbnail Manager. A libvips wrapper for Node.js",
     "author"                    : "idealista",
     "version"                   : "1.0.0",
     "private"                   : false,
@@ -17,14 +17,14 @@
         "node"                      : ">=4.5.0"
     },
     "keywords"                  : [
-        "thumbnailer",
+        "yatm",
         "vips",
         "image",
         "thumb"
     ],
     "repository"                : {
         "type"                      : "git",
-        "url"                       : "git+https://github.com/idealista/thumbnailer.git"
+        "url"                       : "git+https://github.com/idealista/yatm.git"
     },
     "license"                   : "Apache-2.0",
     "main"                      : "index.js",
