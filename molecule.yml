@@ -20,6 +20,7 @@ ansible:
 
 dependency:
   name: galaxy
+  requirements_file: build/requirements.yml
 
 driver:
   name: docker
