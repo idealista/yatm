@@ -4,6 +4,8 @@ var fs = require('fs');
 var thumb = require('../../index');
 
 var image1 = 'test/unit/images/1.png';
+var image2 = 'test/unit/images/1.jpg';
+var image3 = 'test/unit/images/1.gif';
 
 module.exports = {
     setUp : function(callback) {
@@ -16,8 +18,30 @@ module.exports = {
     tearDown : function(callback) {
         callback();
     },
-    testInitFile: function(assert) {
+    testInitPngFile: function(assert) {
         thumb(image1)
+        .resize(this.options.width,this.options.height)
+        .toBuffer(
+            function (err, data) {
+                assert.ok(!err, 'unexpected error: ' + err);
+                assert.notEqual(data, undefined);
+                assert.done();
+            }
+        );
+    },
+    testInitJPGFile: function(assert) {
+        thumb(image2)
+        .resize(this.options.width,this.options.height)
+        .toBuffer(
+            function (err, data) {
+                assert.ok(!err, 'unexpected error: ' + err);
+                assert.notEqual(data, undefined);
+                assert.done();
+            }
+        );
+    },
+    testInitGifFile: function(assert) {
+        thumb(image3)
         .resize(this.options.width,this.options.height)
         .toBuffer(
             function (err, data) {

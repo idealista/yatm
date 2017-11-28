@@ -140,10 +140,10 @@ static void at_exit(void* arg) {
 }
 
 NAN_MODULE_INIT(init) {
-    transform::Init("thumbnailer.cc");
+    transform::Init("yatm.cc");
     AtExit(at_exit);
     Nan::Set(target, Nan::New("transform").ToLocalChecked(),
         Nan::GetFunction(Nan::New<FunctionTemplate>(TransformAsync)).ToLocalChecked());
 }
 
-NODE_MODULE(thumbnailer, init)
+NODE_MODULE(yatm, init)

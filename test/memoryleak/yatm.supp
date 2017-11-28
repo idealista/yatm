@@ -1,0 +1,75 @@
+{
+   init_by_resolv_conf_strdup_possible
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   fun:strdup
+   fun:config_lookup.isra.2
+   fun:init_by_resolv_conf
+}
+
+{
+   init_by_resolv_conf_set_search_possible
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   fun:set_search.isra.1
+   fun:init_by_resolv_conf
+}
+
+{
+   ares_init_options_possible
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   fun:ares_init_options.part.3
+}
+
+{
+   init_by_resolv_conf_realloc_possible
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   fun:realloc
+   fun:config_nameserver
+   fun:init_by_resolv_conf
+}
+
+
+{
+   _Znwm_definite
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znwm
+}
+
+{
+   _Znwm_indirect
+   Memcheck:Leak
+   match-leak-kinds: indirect
+   fun:_Znwm
+}
+
+{
+   _Znwm_possible
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+}
+
+{
+   _Znam_definite
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:_Znam
+}
+
+{
+   allocate_stack_possible
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:calloc
+   fun:allocate_dtv
+   fun:_dl_allocate_tls
+   fun:allocate_stack
+}

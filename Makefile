@@ -12,7 +12,7 @@ test:
 	npm test
 
 clean:
-	rm -f thumbnailer.node
+	rm -f yatm.node
 	rm -rf build
 
 
