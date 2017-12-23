@@ -108,7 +108,7 @@
       become: no
       when: deps.stat.isdir is not defined
 
-    - name:  YATM | Unarchive libraries
+    - name:  YATM | Remove package
       file:
         path: "{{ playbook_dir }}/../deps.tgz"
         state: absent
