@@ -11,16 +11,17 @@ molecule:
     - .git
     - .vagrant
     - .molecule
+    - node_modules
   # directory containing group_vars to use with ansible
-  group_vars: build/group_vars
+  group_vars: buildlib/group_vars
 
 # ansible related configuration
 ansible:
-  playbook: build/yatm.yml
+  playbook: buildlib/yatm.yml
 
 dependency:
   name: galaxy
-  requirements_file: build/requirements.yml
+  requirements_file: buildlib/requirements.yml
 
 driver:
   name: docker
