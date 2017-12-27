@@ -1,0 +1,18 @@
+### IntelliJ ###
+
+*.iml
+.idea
+
+### ANSIBLE ###
+*.retry
+.galaxy_install_info
+*/roles
+
+### Vagrant ###
+.vagrant
+
+### Molecule ###
+.molecule
+
+### Build ###
+deps

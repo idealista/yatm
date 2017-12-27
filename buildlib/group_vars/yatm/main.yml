@@ -1,0 +1,37 @@
+---
+
+yatm_install_path: /opt/yatm
+
+yatm_build_files:
+    - reports
+    - src
+    - test
+    - .jshintignore
+    - .jshintrc
+    - .npmignore
+    - binding.gyp
+    - Gruntfile.js
+    - index.js
+    - Makefile
+    - package.json
+
+yatm_build_libraries:
+    - /usr/local/lib/libvips
+    - /usr/lib/libGraphicsMagick
+    - /usr/lib/x86_64-linux-gnu/libwebp
+    - /usr/lib/x86_64-linux-gnu/libwmflite
+    - /usr/lib/x86_64-linux-gnu/libSM
+    - /usr/lib/x86_64-linux-gnu/libICE
+    - /usr/lib/x86_64-linux-gnu/libpng16
+    - /usr/lib/x86_64-linux-gnu/libgmodule-2.0
+    - /usr/lib/x86_64-linux-gnu/libgobject-2.0
+    - /usr/lib/x86_64-linux-gnu/libglib-2.0
+    - /lib/x86_64-linux-gnu/libglib-2.0
+    - /usr/lib/x86_64-linux-gnu/glib-2.0
+    - /usr/lib/x86_64-linux-gnu/liborc-0.4
+    - /usr/lib/x86_64-linux-gnu/libexif
+    - /usr/lib/x86_64-linux-gnu/libstdc++
+
+yatm_build_includes:
+    - /usr/local/include/vips
+    - /usr/include/glib-2.0

@@ -1,6 +1,6 @@
 'use strict';
 
-var thumbnailer = require('./build/Release/thumbnailer');
+var thumbnailer = require('./build/Release/yatm');
 
 var Thumb = function(input) {
     if (!(this instanceof Thumb)) {
