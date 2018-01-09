@@ -26,7 +26,7 @@
 
     - name: YATM | Create Deps
       file:
-        path: "{{ yatm_install_path }}/draft/{{ item }}"
+        path: "{{ yatm_install_path }}/deps/{{ item }}"
         recurse: yes
         state: directory
       with_items:
@@ -34,29 +34,23 @@
         - include
 
     - name: YATM | Include libraries
-      shell: "cp -R {{ item }}* {{ yatm_install_path }}/draft/lib"
+      shell: "cp -R {{ item }}* {{ yatm_install_path }}/deps/lib"
       changed_when: false
       with_items: "{{ yatm_build_libraries }}"
 
+    - name: YATM | Remove symlinks
+      shell: "for f in $(find -type l);do cp --remove-destination $(readlink $f) $f;done;"
+      args:
+        chdir: "{{ yatm_install_path }}/deps/lib"
+      changed_when: false
+
     - name: YATM | Include headers
-      shell: "cp -R {{ item }} {{ yatm_install_path }}/draft/include"
+      shell: "cp -R  {{ item }} {{ yatm_install_path }}/deps/include"
       changed_when: false
       with_items: "{{ yatm_build_includes }}"
       tags:
         - skip_ansible_lint
 
-    - name:  YATM | Create deps folder
-      file:
-        path: "{{ yatm_install_path }}/deps"
-        state: directory
-
-    - name:  YATM | Remove remote symlinks
-      shell: "tar -hcf - . | tar -xf - -C {{ yatm_install_path }}/deps"
-      args:
-        chdir: "{{ yatm_install_path }}/draft"
-      changed_when: false
-      tags:
-        - skip_ansible_lint
 
     - name: YATM | Install node-gyp
       npm:
