@@ -18,6 +18,7 @@ molecule:
 # ansible related configuration
 ansible:
   playbook: buildlib/yatm.yml
+  verbose: False
 
 dependency:
   name: galaxy
@@ -31,7 +32,7 @@ docker:
     - name: yatm.cont
       ansible_groups:
         - yatm
-      image: geerlingguy/docker-debian9-ansible
+      image: geerlingguy/docker-debian8-ansible
       image_version: latest
 
       privileged: True

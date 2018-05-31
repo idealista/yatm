@@ -16,6 +16,7 @@
       with_items:
         - valgrind
         - wget
+        - webp
 
     - name: YATM | Copy sources
       copy:
@@ -50,7 +51,6 @@
       with_items: "{{ yatm_build_includes }}"
       tags:
         - skip_ansible_lint
-
 
     - name: YATM | Install node-gyp
       npm:
