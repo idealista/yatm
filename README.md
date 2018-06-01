@@ -111,10 +111,11 @@ $ molecule test
 
 ![Node.js](https://img.shields.io/badge/Node.js-8.9.1-green.svg)
 
-![Ansible](https://img.shields.io/badge/ansible-2.3.1.0-green.svg)
+![Grunt](https://img.shields.io/badge/Grunt-1.0.-green.svg)
 
-![Molecule](https://img.shields.io/badge/molecule-1.25.0-green.svg)
+![Ansible](https://img.shields.io/badge/Ansible-2.3.1.0-green.svg)
 
+![Molecule](https://img.shields.io/badge/Molecule-1.25.0-green.svg)
 
 ## Versioning
 
