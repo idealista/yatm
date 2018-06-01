@@ -60,7 +60,7 @@ Thumb.prototype.resize = function(width, height) {
  * Rotates this Thumb the specified angle of rotation
  * @memberof Thumb
  * @param {number} angle - rotation angle (should be 0, 90, 180 or 270 degrees)
- * @return {Thumb} This Thumb rotated the specified angle
+ * @return {Thumb} This Thumb rotated the specified angle applied
  */
 Thumb.prototype.rotate = function(angle) {
     if (!isValidAngle(angle)) {
@@ -75,7 +75,7 @@ Thumb.prototype.rotate = function(angle) {
  * Sets the quality of this Thumb the specified value
  * @memberof Thumb
  * @param {number} quality - quality value (should be in the range [0, 100])
- * @return {Thumb} This Thumb with this level of quality
+ * @return {Thumb} This Thumb with this level of quality applied
  */
 Thumb.prototype.quality = function(quality) {
     if (!isValidQuality(quality)) {
@@ -86,6 +86,13 @@ Thumb.prototype.quality = function(quality) {
     return this;
 };
 
+/**
+ * Adjust the image to the width ('wi') or height ('he') if one
+ * of them are 0 setted. Usually setted with [crop]{@link Thumb#crop}.
+ * @memberof Thumb
+ * @param {string} adjust - adjust value should be 'wi' (width) or 'he' (height)
+ * @return {Thumb} This Thumb with this setting applied
+ */
 Thumb.prototype.adjust = function(adjust) {
     if (!isValidAdjust(adjust)) {
       throw new Error('Invalid adjust: ' + adjust + '. Adjust valid values are (wi, he)');
@@ -95,6 +102,13 @@ Thumb.prototype.adjust = function(adjust) {
     return this;
 };
 
+/**
+ * Crops the thumb if the resized result doesn't match current ratio,
+ * avoiding deformation
+ * @memberof Thumb
+ * @param {boolean} crop - true if the Thumb should be cropped, false otherwise
+ * @return {Thumb} This Thumb with this setting applied
+ */
 Thumb.prototype.crop = function(crop) {
     if (!isValidCrop(crop)) {
       throw new Error('Invalid crop: ' + crop + '. Crop valid values are (true,false)');
