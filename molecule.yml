@@ -18,6 +18,7 @@ molecule:
 # ansible related configuration
 ansible:
   playbook: buildlib/yatm.yml
+  verbose: False
 
 dependency:
   name: galaxy
@@ -28,10 +29,23 @@ driver:
 
 docker:
   containers:
-    - name: yatm.cont
+    - name: yatm_debian9.cont
       ansible_groups:
         - yatm
       image: geerlingguy/docker-debian9-ansible
+      image_version: latest
+
+      privileged: True
+      cap_add:
+        - SYS_ADMIN
+      volume_mounts:
+        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      command: '/lib/systemd/systemd'
+
+    - name: yatm_debian8.cont
+      ansible_groups:
+        - yatm
+      image: geerlingguy/docker-debian8-ansible
       image_version: latest
 
       privileged: True
@@ -51,12 +65,14 @@ vagrant:
   platforms:
     - name: Debian9
       box: debian/stretch64
+    - name: Debian8
+      box: debian/jessie64
 
   providers:
     - name: virtualbox
       type: virtualbox
       options:
-        memory: 256
+        memory: 512
         cpus: 1
 
   instances:

@@ -13,8 +13,7 @@ G_SLICE=always-malloc G_DEBUG=gc-friendly valgrind \
   --suppressions=test/memoryleak/libvips.supp \
   --suppressions=test/memoryleak/yatm.supp \
   --gen-suppressions=yes \
-  --leak-check=full \
-  --show-leak-kinds=definite,indirect,possible \
+  --show-leak-kinds=definite,indirect \
   --num-callers=10 \
   --trace-children=yes \
   --log-file=reports/memoryleak.txt \
