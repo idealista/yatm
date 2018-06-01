@@ -111,7 +111,7 @@ $ molecule test
 
 ![Node.js](https://img.shields.io/badge/Node.js-8.9.1-green.svg)
 
-![Grunt](https://img.shields.io/badge/Grunt-1.0.-green.svg)
+![Grunt](https://img.shields.io/badge/Grunt-1.0.2-green.svg)
 
 ![Ansible](https://img.shields.io/badge/Ansible-2.3.1.0-green.svg)
 
