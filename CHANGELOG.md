@@ -5,7 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased](https://github.com/idealista/yatm/tree/develop)
 
 ### Added
-- - [#14](https://github.com/idealista/yatm/issues/14) *Adding support to Debian Jessie* @dortega
+- [#14](https://github.com/idealista/yatm/issues/14) *Adding support to Debian Jessie* @dortega
+- [#17](https://github.com/idealista/yatm/issues/17) *Adding static documentation pages generated with JSDoc* @dortega
 
 ### Fixed
 - [#15](https://github.com/idealista/yatm/issues/15) *Using exiv2-role v1.0.1 because source package download is not working anymore* @dortega
