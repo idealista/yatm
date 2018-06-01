@@ -1,9 +1,10 @@
-### IntelliJ ###
+### Node.js ###
+node_modules
 
-*.iml
-.idea
+### ESDoc ###
+docs/
 
-### ANSIBLE ###
+### Ansible ###
 *.retry
 .galaxy_install_info
 */roles
@@ -16,3 +17,4 @@
 
 ### Build ###
 deps
+build

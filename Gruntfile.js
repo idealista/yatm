@@ -1,5 +1,4 @@
 module.exports = function(grunt) {
-    // project configuration
     grunt.initConfig({
         pkg : grunt.file.readJSON('package.json'),
         jshint : {
@@ -19,11 +18,19 @@ module.exports = function(grunt) {
                     }
                 }
             }
+        },
+        esdoc: {
+            compile: {
+                options: {
+                    config: ".esdoc.json"
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
+    grunt.loadNpmTasks("grunt-plugin-esdoc");
 
     // default task(s)
     grunt.registerTask('default', ['jshint', 'nodeunit:local']);

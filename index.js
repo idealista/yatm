@@ -28,22 +28,23 @@ var Thumb = function(input) {
 module.exports = Thumb;
 
 Thumb.prototype.resize = function(width, height) {
-    if (isPositiveOrZeroInteger(width)){
-        this.options.width = width;
-    } else {
-        throw new Error('Invalid width ' + width);
+    if (!isPositiveOrZeroInteger(width)) {
+      throw new Error('Invalid width: ' + width + '. Width should be >= 0');
     }
-    if (isPositiveOrZeroInteger(height)){
-        this.options.height = height;
-    } else {
-        throw new Error('Invalid height ' + height);
+
+    if (!isPositiveOrZeroInteger(height)) {
+      throw new Error('Invalid height: ' + height + '. Height should be >= 0');
     }
+
+    this.options.width = width;
+    this.options.height = height;
+
     return this;
 };
 
 Thumb.prototype.rotate = function(angle) {
     if (!isValidAngle(angle)) {
-        throw new Error('Unsupported angle (0, 90, 180, 270) ' + angle);
+      throw new Error('Unsupported angle: ' + angle + '. Supported values are (0, 90, 180, 270)');
     }
 
     this.options.rotate = angle;
@@ -52,7 +53,7 @@ Thumb.prototype.rotate = function(angle) {
 
 Thumb.prototype.quality = function(quality) {
     if (!isValidQuality(quality)) {
-        throw new Error('Invalid quality (1 -100) ' + quality);
+      throw new Error('Invalid quality: ' + quality + '. Valid quality value should be in the range [0-100]');
     }
 
     this.options.quality = quality;
@@ -61,7 +62,7 @@ Thumb.prototype.quality = function(quality) {
 
 Thumb.prototype.adjust = function(adjust) {
     if (!isValidAdjust(adjust)) {
-        throw new Error('Invalid adjust (wi, he) ' + adjust);
+      throw new Error('Invalid adjust: ' + adjust + '. Adjust valid values are (wi, he)');
     }
 
     this.options.adjust = adjust;
@@ -70,7 +71,7 @@ Thumb.prototype.adjust = function(adjust) {
 
 Thumb.prototype.crop = function(crop) {
     if (!isValidCrop(crop)) {
-        throw new Error('Invalid crop (true,false) ' + crop);
+      throw new Error('Invalid crop: ' + crop + '. Crop valid values are (true,false)');
     }
 
     this.options.crop = crop;
