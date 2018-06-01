@@ -116,25 +116,35 @@ Thumb.prototype.watermark = function(input) {
     return this;
 };
 
+/**
+ * Return whether this Thumb contains a watermark
+ * @memberof Thumb
+ * @return {boolean} true if has watermark, false otherwise
+ */
 Thumb.prototype.hasWatermark = function() {
     return (this.options.watermark.path !== null &&
             this.options.watermark.path !== '') ||
            this.options.watermark.buffer !== null;
 };
 
+/**
+ * Applies all given transformations to this Thumb
+ * @memberof Thumb
+ * @param callback - The callback that handles the response.
+ */
 Thumb.prototype.toBuffer = function(callback) {
     var input = getImage(this.options.input);
+
     if (input) {
-        thumbnailer.
-        transform(input,
-                  this.options.width,
-                  this.options.height,
-                  this.options.quality,
-                  this.options.crop,
-                  getImage(this.options.watermark),
-                  this.options.rotate,
-                  this.options.adjust,
-                  callback);
+        thumbnailer.transform(input,
+                              this.options.width,
+                              this.options.height,
+                              this.options.quality,
+                              this.options.crop,
+                              getImage(this.options.watermark),
+                              this.options.rotate,
+                              this.options.adjust,
+                              callback);
     } else {
         callback('Undefined input');
     }
