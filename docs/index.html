@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>DocStrap Index</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">DocStrap</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Thumb.html">Thumb</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+    <section class="readme-section">
+        <article><p><img src="https://raw.githubusercontent.com/idealista/yatm/master/logo.gif" alt="Logo"></p>
+<p><a href="https://travis-ci.org/idealista/yatm"><img src="https://travis-ci.org/idealista/yatm.svg?branch=master" alt="Build Status"></a></p>
+<h1>YATM - Yet Another Thumbnail Manager</h1><p>A Node.js module that provides access to the VIPS library and Exiv2 in order to resize and rotate images.</p>
+<ul>
+<li><a href="#getting-started">Getting Started</a><ul>
+<li><a href="#prerequisities">Prerequisities</a></li>
+<li><a href="#installing">Installing</a></li>
+</ul>
+</li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#built-with">Built With</a></li>
+<li><a href="#versioning">Versioning</a></li>
+<li><a href="#authors">Authors</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#contributing">Contributing</a></li>
+</ul>
+<h2>Getting Started</h2><h3>Prerequisities</h3><p>Node.js installed. Tested with v8.9.1.</p>
+<h2>Installation</h2><pre class="prettyprint source"><code>$ npm install yatm</code></pre><p>In order to avoid external dependencies, add</p>
+<pre class="prettyprint source"><code>LD_LIBRARY_PATH={{path to project/global node_modules}}/yatm/deps/lib/</code></pre><p>to your Node.js environment. Usually:</p>
+<pre class="prettyprint source"><code>export LD_LIBRARY_PATH={{path to project/global node_modules}}/yatm/deps/lib/</code></pre><h2>Usage</h2><ul>
+<li><p><strong>(path)</strong></p>
+<p>  Set the thumb object with an input path.</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>(buffer)</strong></p>
+<p>  Set the thumb object with an input buffer.</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>resize(width,height)</strong></p>
+<p>  The resized values. One of both could be 0, so the result will adjust to the non zero side.</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>rotate(rotate)</strong></p>
+<p>  Thumb rotation.</p>
+<ul>
+<li>Values: {0,90,180,270}</li>
+</ul>
+</li>
+<li><p><strong>quality(quality)</strong></p>
+<p>  Desired thumb quality.</p>
+<ul>
+<li>Values: {0-100}</li>
+</ul>
+</li>
+<li><p><strong>adjust(adjust)</strong></p>
+<p>  Adjusts the image to the width ('wi') or height ('he') if one of them are 0 setted. Usually setted with crop.</p>
+<ul>
+<li>Values: {'wi', 'he'}</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>crop(crop)</strong></p>
+<p>  Crops the thumb if the resized result doesn't match current ratio, avoiding deformation.</p>
+<ul>
+<li>Values: {true,false}</li>
+</ul>
+</li>
+<li><p><strong>toBuffer(callback)</strong></p>
+<p>  Transform the thumb object with the desired options and returns the image as a buffer.</p>
+</li>
+</ul>
+<h2>Testing</h2><ul>
+<li>Unit testing</li>
+</ul>
+<pre class="prettyprint source"><code>$ npm test</code></pre><ul>
+<li>Memory leak</li>
+</ul>
+<pre class="prettyprint source"><code>$ ./test/memoryleak/memoryleak.sh</code></pre><ul>
+<li>Full testing, that creates a docker container and installs all dependencies</li>
+</ul>
+<pre class="prettyprint source"><code>$ molecule test</code></pre><h2>Built With</h2><p><img src="https://img.shields.io/badge/Node.js-8.9.1-green.svg" alt="Node.js"></p>
+<p><img src="https://img.shields.io/badge/Grunt-1.0.2-green.svg" alt="Grunt"></p>
+<p><img src="https://img.shields.io/badge/Ansible-2.3.1.0-green.svg" alt="Ansible"></p>
+<p><img src="https://img.shields.io/badge/Molecule-1.25.0-green.svg" alt="Molecule"></p>
+<h2>Versioning</h2><p>For the versions available, see the <a href="https://github.com/idealista/yatm/tags">tags on this repository</a>.</p>
+<p>Additionaly you can see what change in each version in the <a href="CHANGELOG.md">CHANGELOG.md</a> file.</p>
+<h2>Authors</h2><ul>
+<li><strong>Idealista</strong> - <em>Work with</em> - <a href="https://github.com/idealista">idealista</a></li>
+</ul>
+<p>See also the list of <a href="https://github.com/idealista/yatm/contributors">contributors</a> who participated in this project.</p>
+<h2>License</h2><p><a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a></p>
+<p>This project is licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license - see the <a href="LICENSE">LICENSE</a> file for details.</p>
+<h2>Contributing</h2><p>Please read <a href=".github/CONTRIBUTING.md">CONTRIBUTING.md</a> for details on our code of conduct, and the process for submitting pull requests to us.</p></article>
+    </section>
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	DocStrap Copyright © 2012-2015 The contributors to the JSDoc3 and DocStrap projects.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on Fri Jun 1st 2018
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

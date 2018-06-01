@@ -1,8 +1,5 @@
 ### Node.js ###
-node_modules
-
-### JSDoc ###
-docs/
+node_modules/
 
 ### Ansible ###
 *.retry

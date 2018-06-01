@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>DocStrap Source: index.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">DocStrap</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Thumb.html">Thumb</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: index.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">'use strict';
+
+var thumbnailer = require('./build/Release/yatm');
+
+/**
+  * Representation of a Thumbnail with its attributes
+  * @class
+  * @constructor
+  * @param {string|Buffer} input - The path (string) or the {@link https://nodejs.org/api/buffer.html#buffer_class_buffer|Buffer}
+  * that represents binary data of this Thumbnail directly
+  */
+var Thumb = function(input) {
+    if (!(this instanceof Thumb)) {
+        return new Thumb(input);
+    }
+    this.options = {
+        input : {
+            buffer: null,
+        },
+        watermark : {
+            path: '',
+            buffer: null
+        },
+        width: 0,
+        height: 0,
+        quality: 80,
+        rotate: 0,
+        adjust: '',
+        crop: false
+    };
+    setImage(this.options.input, input);
+    return this;
+};
+
+module.exports = Thumb;
+
+/**
+ * Sets the size of this Thumb to the specified width and height
+ * @memberof Thumb
+ * @param {number} width - new Width for this Thumb (should be an integer >= 0)
+ * @param {number} height - new Height for this Thumb (should be an integer >= 0)
+ * @return {Thumb} This Thumb resized to specified width and height
+ */
+Thumb.prototype.resize = function(width, height) {
+    if (!isPositiveOrZeroInteger(width)) {
+      throw new Error('Invalid width: ' + width + '. Width should be >= 0');
+    }
+
+    if (!isPositiveOrZeroInteger(height)) {
+      throw new Error('Invalid height: ' + height + '. Height should be >= 0');
+    }
+
+    this.options.width = width;
+    this.options.height = height;
+
+    return this;
+};
+
+/**
+ * Rotates this Thumb the specified angle of rotation
+ * @memberof Thumb
+ * @param {number} angle - rotation angle (should be 0, 90, 180 or 270 degrees)
+ * @return {Thumb} This Thumb rotated the specified angle
+ */
+Thumb.prototype.rotate = function(angle) {
+    if (!isValidAngle(angle)) {
+      throw new Error('Unsupported angle: ' + angle + '. Supported values are (0, 90, 180, 270)');
+    }
+
+    this.options.rotate = angle;
+    return this;
+};
+
+/**
+ * Sets the quality of this Thumb the specified value
+ * @memberof Thumb
+ * @param {number} quality - quality value (should be in the range [0, 100])
+ * @return {Thumb} This Thumb with this level of quality
+ */
+Thumb.prototype.quality = function(quality) {
+    if (!isValidQuality(quality)) {
+      throw new Error('Invalid quality: ' + quality + '. Valid quality value should be in the range [0-100]');
+    }
+
+    this.options.quality = quality;
+    return this;
+};
+
+Thumb.prototype.adjust = function(adjust) {
+    if (!isValidAdjust(adjust)) {
+      throw new Error('Invalid adjust: ' + adjust + '. Adjust valid values are (wi, he)');
+    }
+
+    this.options.adjust = adjust;
+    return this;
+};
+
+Thumb.prototype.crop = function(crop) {
+    if (!isValidCrop(crop)) {
+      throw new Error('Invalid crop: ' + crop + '. Crop valid values are (true,false)');
+    }
+
+    this.options.crop = crop;
+    return this;
+};
+
+/**
+ * Applies provided watermark to this Thumb
+ * @memberof Thumb
+ * @param {string|Buffer} input - The path (string) or the {@link https://nodejs.org/api/buffer.html#buffer_class_buffer|Buffer}
+ * that represents binary data of the watermark to apply directly
+ * @return {Thumb} This Thumb with this watermark applied
+ */
+Thumb.prototype.watermark = function(input) {
+    setImage(this.options.watermark, input);
+    return this;
+};
+
+/**
+ * Return whether this Thumb contains a watermark
+ * @memberof Thumb
+ * @return {boolean} true if has watermark, false otherwise
+ */
+Thumb.prototype.hasWatermark = function() {
+    return (this.options.watermark.path !== null &amp;&amp;
+            this.options.watermark.path !== '') ||
+           this.options.watermark.buffer !== null;
+};
+
+/**
+ * Applies all given transformations to this Thumb
+ * @memberof Thumb
+ * @param callback - The callback that handles the response.
+ */
+Thumb.prototype.toBuffer = function(callback) {
+    var input = getImage(this.options.input);
+
+    if (input) {
+        thumbnailer.transform(input,
+                              this.options.width,
+                              this.options.height,
+                              this.options.quality,
+                              this.options.crop,
+                              getImage(this.options.watermark),
+                              this.options.rotate,
+                              this.options.adjust,
+                              callback);
+    } else {
+        callback('Undefined input');
+    }
+};
+
+function setImage(dest, input) {
+    if (typeof input === 'string') {
+        dest.path = input;
+    } else if (typeof input === 'object' &amp;&amp; input instanceof Buffer) {
+        dest.buffer = input;
+    } else {
+        throw new Error('Unsupported input ' + typeof input);
+    }
+}
+
+function getImage(input) {
+    var img;
+    if (input.buffer !== null) {
+        img = input.buffer;
+    } else if (input.path !== null &amp;&amp;
+               input.path !== '') {
+        img = input.path;
+    }
+    return img;
+}
+
+function isPositiveOrZeroInteger(num) {
+    return typeof num === 'number' &amp;&amp;
+           !Number.isNaN(num) &amp;&amp;
+           num % 1 === 0 &amp;&amp;
+           num >= 0;
+}
+
+function isValidAngle(angle) {
+    return typeof angle === 'number' &amp;&amp;
+           !Number.isNaN(angle) &amp;&amp;
+           [0, 90, 180, 270].indexOf(angle) !== -1;
+}
+
+function isValidQuality(quality) {
+    return typeof quality === 'number' &amp;&amp;
+           !Number.isNaN(quality) &amp;&amp;
+           quality % 1 === 0 &amp;&amp;
+           quality >= 0 &amp;&amp;
+           quality &lt;= 100;
+}
+
+function isValidAdjust(adjust) {
+    return ['wi', 'he'].indexOf(adjust) !== -1;
+}
+
+function isValidCrop(crop) {
+    return typeof crop === 'boolean';
+}
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	DocStrap Copyright © 2012-2015 The contributors to the JSDoc3 and DocStrap projects.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on Fri Jun 1st 2018
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
