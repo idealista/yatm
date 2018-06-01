@@ -19,21 +19,24 @@ module.exports = function(grunt) {
                 }
             }
         },
-        esdoc: {
-            compile: {
-                options: {
-                    config: ".esdoc.json"
-                }
+        jsdoc : {
+            dist : {
+              src: ['*.js'],
+              options: {
+                  destination : 'docs',
+                     template : "node_modules/ink-docstrap/template",
+                    configure : "node_modules/ink-docstrap/template/jsdoc.conf.json"
+              }
             }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
-    grunt.loadNpmTasks("grunt-plugin-esdoc");
+    grunt.loadNpmTasks("grunt-jsdoc");
 
     // default task(s)
-    grunt.registerTask('default', ['jshint', 'nodeunit:local']);
+    grunt.registerTask('default', ['jshint', 'nodeunit:local', 'jsdoc']);
 
     // tasks for continuous integration (jenkins)
     grunt.registerTask('jenkins', ['jshint', 'nodeunit:ci']);

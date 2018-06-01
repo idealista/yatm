@@ -2,6 +2,13 @@
 
 var thumbnailer = require('./build/Release/yatm');
 
+/**
+  * Representation of a Thumbnail with its attributes
+  * @class
+  * @constructor
+  * @param {string|Buffer} input - The path (string) or the {@link https://nodejs.org/api/buffer.html#buffer_class_buffer|Buffer}
+  * that represents binary data of this Thumbnail directly
+  */
 var Thumb = function(input) {
     if (!(this instanceof Thumb)) {
         return new Thumb(input);
@@ -27,6 +34,13 @@ var Thumb = function(input) {
 
 module.exports = Thumb;
 
+/**
+ * Sets the size of this Thumb to the specified width and height
+ * @memberof Thumb
+ * @param {number} width - new Width for this Thumb (should be an integer >= 0)
+ * @param {number} height - new Height for this Thumb (should be an integer >= 0)
+ * @return {Thumb} This Thumb resized to specified width and height
+ */
 Thumb.prototype.resize = function(width, height) {
     if (!isPositiveOrZeroInteger(width)) {
       throw new Error('Invalid width: ' + width + '. Width should be >= 0');
@@ -42,6 +56,12 @@ Thumb.prototype.resize = function(width, height) {
     return this;
 };
 
+/**
+ * Rotates this Thumb the specified angle of rotation
+ * @memberof Thumb
+ * @param {number} angle - rotation angle (should be 0, 90, 180 or 270 degrees)
+ * @return {Thumb} This Thumb rotated the specified angle
+ */
 Thumb.prototype.rotate = function(angle) {
     if (!isValidAngle(angle)) {
       throw new Error('Unsupported angle: ' + angle + '. Supported values are (0, 90, 180, 270)');
@@ -51,6 +71,12 @@ Thumb.prototype.rotate = function(angle) {
     return this;
 };
 
+/**
+ * Sets the quality of this Thumb the specified value
+ * @memberof Thumb
+ * @param {number} quality - quality value (should be in the range [0, 100])
+ * @return {Thumb} This Thumb with this level of quality
+ */
 Thumb.prototype.quality = function(quality) {
     if (!isValidQuality(quality)) {
       throw new Error('Invalid quality: ' + quality + '. Valid quality value should be in the range [0-100]');
@@ -78,6 +104,13 @@ Thumb.prototype.crop = function(crop) {
     return this;
 };
 
+/**
+ * Applies provided watermark to this Thumb
+ * @memberof Thumb
+ * @param {string|Buffer} input - The path (string) or the {@link https://nodejs.org/api/buffer.html#buffer_class_buffer|Buffer}
+ * that represents binary data of the watermark to apply directly
+ * @return {Thumb} This Thumb with this watermark applied
+ */
 Thumb.prototype.watermark = function(input) {
     setImage(this.options.watermark, input);
     return this;
