@@ -6,7 +6,7 @@
     "homepage": "https://github.com/idealista/yatm",
     "private": false,
     "dependencies": {
-        "nan": "^2.2.0"
+        "nan": "^2.10.0"
     },
     "devDependencies": {
         "jsdoc": "^3.5.0",
@@ -24,7 +24,12 @@
         "yatm",
         "vips",
         "image",
-        "thumb"
+        "thumbnail",
+        "resize",
+        "crop",
+        "watermark",
+        "jpeg",
+        "png"
     ],
     "repository": {
         "type": "git",
