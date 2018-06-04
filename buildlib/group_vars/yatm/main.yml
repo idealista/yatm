@@ -9,6 +9,7 @@ yatm_build_files:
     - .jshintignore
     - .jshintrc
     - .npmignore
+    - jsdoc.conf.json
     - binding.gyp
     - Gruntfile.js
     - index.js
