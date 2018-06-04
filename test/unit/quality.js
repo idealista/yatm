@@ -28,7 +28,15 @@ module.exports = {
             }
         );
     },
-    testQualityInvalid: function(assert) {
+    testMinimumQualityNotReached: function(assert) {
+        var quality = -1;
+        assert.throws(function(){
+            thumb(image1)
+            .quality(quality);
+        });
+        assert.done();
+    },
+    testMaximumQualityExceeded: function(assert) {
         var quality = 120;
         assert.throws(function(){
             thumb(image1)
