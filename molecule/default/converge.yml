@@ -1,0 +1,22 @@
+---
+
+- name: Converge
+  hosts: all
+  serial: 1
+
+  pre_tasks:
+    - name: YATM | Install Another deps
+      apt:
+        pkg: "{{ item }}"
+        state: present
+      with_items:
+        - libturbojpeg0-dev
+
+  roles:
+    - exiv2
+    - vips
+    - nodejs
+
+  post_tasks:
+    - import_tasks: includes/package_dependencies.yml
+    - import_tasks: includes/build.yml

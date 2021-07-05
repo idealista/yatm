@@ -5,7 +5,7 @@ if ! type valgrind >/dev/null; then
   exit 1
 fi
 
-wget --output-document=`dirname "$0"`/libvips.supp https://raw.githubusercontent.com/jcupitt/libvips/master/libvips.supp
+wget --output-document=`dirname "$0"`/libvips.supp https://raw.githubusercontent.com/jcupitt/libvips/8.5/libvips.supp
 
 cd `dirname "$0"`/../..
 
