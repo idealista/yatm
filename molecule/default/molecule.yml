@@ -9,8 +9,8 @@ lint: |
   ansible-lint .
 
 platforms:
-  - name: yatm-${MOLECULE_DISTRO:-buster}-slim
-    image: debian:${MOLECULE_DISTRO:-buster}-slim
+  - name: yatm
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
     privileged: false
     capabilities:
       - SYS_ADMIN
