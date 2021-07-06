@@ -10,8 +10,10 @@ install:
 env:
   jobs:
     - MOLECULE_DISTRO=debian:buster-slim
+before_script:
+  - npm install -g npm@'>=3'
 script:
-  - travis_wait 30 pipenv run molecule test
+  - pipenv run molecule test
 
 deploy:
   provider: npm
