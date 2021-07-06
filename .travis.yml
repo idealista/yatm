@@ -11,8 +11,8 @@ env:
   jobs:
     - MOLECULE_DISTRO=debian:buster-slim
 before_script:
-  - nvm install 14
-  - nvm use 14
+  - nvm install 8
+  - nvm use 8
 script:
   - pipenv run molecule test
 
