@@ -11,7 +11,7 @@ env:
   jobs:
     - MOLECULE_DISTRO=debian:buster-slim
 before_script:
-  - npm install -g npm@'>=3'
+  - npm install -g npm@'>=6'
 script:
   - pipenv run molecule test
 
