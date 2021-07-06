@@ -7,6 +7,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [2.0.0](https://github.com/idealista/yatm/tree/2.0.0)
 ### Added
 - [#20](https://github.com/idealista/yatm/issues/20) *Adding support to Debian Buster and NodeJS 14* @jmonterrubio
+### Fixed
+- [#23](https://github.com/idealista/yatm/issues/23) *Error publishing npm package from travis* @jmonterrubio
 
 ## [1.0.1](https://github.com/idealista/yatm/tree/1.0.1)
 ### Added
