@@ -1,0 +1,14 @@
+ 
+exclude_paths:
+  - ./molecule
+  - ./node_modules
+  - ./tests
+  - ./reports
+  - ./build
+parseable: true
+skip_list:
+  - '204'
+  - '503'
+  - '303'
+use_default_rules: true
+verbosity: 1

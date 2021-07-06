@@ -4,8 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/yatm/tree/develop)
 
+## [2.0.0](https://github.com/idealista/yatm/tree/2.0.0)
 ### Added
-- - [#14](https://github.com/idealista/yatm/issues/14) *Adding support to Debian Jessie* @dortega
+- [#20](https://github.com/idealista/yatm/issues/20) *Adding support to Debian Buster and NodeJS 14* @jmonterrubio
+
+## [1.0.1](https://github.com/idealista/yatm/tree/1.0.1)
+### Added
+- [#14](https://github.com/idealista/yatm/issues/14) *Adding support to Debian Jessie* @dortega
 
 ### Fixed
 - [#15](https://github.com/idealista/yatm/issues/15) *Using exiv2-role v1.0.1 because source package download is not working anymore* @dortega

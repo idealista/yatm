@@ -1,39 +1,39 @@
 {
-    "name"                      : "yatm",
-    "description"               : "Yet Another Thumbnail Manager. A libvips wrapper for Node.js",
-    "author"                    : "idealista <labs@idealista.com> (http://www.idealista.com/labs/blog/)",
-    "version"                   : "1.0.3",
-    "homepage"                  : "https://github.com/idealista/yatm",
-    "private"                   : false,
-    "dependencies"              : {
-        "nan"                       : "^2.2.0"
+    "name": "yatm",
+    "description": "Yet Another Thumbnail Manager. A libvips wrapper for Node.js",
+    "author": "idealista <labs@idealista.com> (http://www.idealista.com/labs/blog/)",
+    "version": "2.0.0",
+    "homepage": "https://github.com/idealista/yatm",
+    "private": false,
+    "dependencies": {
+        "nan": "^2.14.2"
     },
-    "devDependencies"           : {
-        "grunt"                     : "^1.0.1",
-        "grunt-cli"                 : "^1.2.0",
-        "grunt-contrib-jshint"      : "^1.1.0",
-        "grunt-contrib-nodeunit"    : "^1.0.0"
+    "devDependencies": {
+        "grunt": "^1.0.1",
+        "grunt-cli": "^1.2.3",
+        "grunt-contrib-jshint": "^1.1.0",
+        "grunt-contrib-nodeunit": "^1.0.0"
     },
-    "engines"                   : {
-        "node"                      : ">=4.5.0"
+    "engines": {
+        "node": ">=14.0.0"
     },
-    "keywords"                  : [
+    "keywords": [
         "yatm",
         "vips",
         "image",
         "thumb"
     ],
-    "repository"                : {
-        "type"                      : "git",
-        "url"                       : "git+https://github.com/idealista/yatm.git"
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/idealista/yatm.git"
     },
     "bugs": {
-        "url"                   : "https://github.com/idealista/yatm/issues"
+        "url": "https://github.com/idealista/yatm/issues"
     },
-    "license"                   : "Apache-2.0",
-    "main"                      : "index.js",
-    "scripts"                   : {
-        "test"                      : "grunt",
-        "test-memleak"              : "node test/memoryleak/memoryleak.js"
+    "license": "Apache-2.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "grunt",
+        "test-memleak": "node test/memoryleak/memoryleak.js"
     }
 }

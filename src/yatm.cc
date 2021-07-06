@@ -22,19 +22,19 @@ using namespace Nan;
 #define REQ_NUM_ARG(I, VAR)                                                 \
     if (info.Length() <= (I) || !info[I]->IsNumber())                       \
         Nan::ThrowTypeError("Argument " #I " must be a number");            \
-    int VAR = info[I]->Int32Value()
+    int VAR = info[I]->ToInt32(Nan::GetCurrentContext()).ToLocalChecked()->Value();
 #define REQ_STR_ARG(I, VAR)                                                 \
     if (info.Length() <= (I) || !info[I]->IsString())                       \
         Nan::ThrowTypeError("Argument " #I " must be a string");            \
-    Local<String> VAR = info[I]->ToString()
+    Local<String> VAR = info[I]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>());
 #define REQ_BOOL_ARG(I, VAR)                                                \
     if (info.Length() <= (I) || !info[I]->IsBoolean())                      \
         Nan::ThrowTypeError("Argument " #I " must be a boolean");           \
-    bool VAR = info[I]->BooleanValue()
+    bool VAR = info[I]->BooleanValue(Nan::GetCurrentContext()->GetIsolate())
 #define REQ_OBJ_ARG(I, VAR)                                                 \
     if (info.Length() <= (I) || !info[I]->IsObject())                       \
         Nan::ThrowTypeError("Argument " #I " must be an object");           \
-    Local<Object> VAR = info[I]->ToObject()
+    Local<Object> VAR = info[I]->ToObject(Nan::GetCurrentContext()).ToLocalChecked();
 #define REQ_STR_OR_OBJ_ARG(I)                                           \
     if (info.Length() <= (I) ||                                             \
         !(info[I]->IsString() || info[I]->IsObject()))                      \
@@ -110,9 +110,9 @@ NAN_METHOD(TransformAsync) {
     REQ_FUN_ARG(8, cb);
     TransformCall *c = new TransformCall;
     if (info[0]->IsString()) {
-        c->in->path = *Nan::Utf8String(info[0]->ToString());
+        c->in->path = *Nan::Utf8String(info[0]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>()));
     } else if (info[0]->IsObject()) {
-        Local<Object> buffer_in = info[0]->ToObject();
+        Local<Object> buffer_in = info[0]->ToObject(Nan::GetCurrentContext()).ToLocalChecked();
         c->in->buffer_len = Buffer::Length(buffer_in);
         c->in->buffer = g_malloc(c->in->buffer_len);
         memcpy(c->in->buffer, Buffer::Data(buffer_in), c->in->buffer_len);
@@ -122,9 +122,9 @@ NAN_METHOD(TransformAsync) {
     c->op->quality = quality;
     c->op->crop_to_size = crop;
     if (info[5]->IsString()) {
-        c->wm->path = *String::Utf8Value(info[5]->ToString());
+        c->wm->path = *Nan::Utf8String(info[5]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>()));
     } else if (info[5]->IsObject()) {
-        Local<Object> buffer_wm = info[5]->ToObject();
+        Local<Object> buffer_wm = info[5]->ToObject(Nan::GetCurrentContext()).ToLocalChecked();
         c->wm->buffer_len = Buffer::Length(buffer_wm);
         c->wm->buffer = g_malloc(c->wm->buffer_len);
         memcpy(c->wm->buffer, Buffer::Data(buffer_wm), c->wm->buffer_len);

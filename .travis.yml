@@ -1,18 +1,18 @@
+---
 language: python
-python:
-- '2.7'
-sudo: required
+python: "3.7"
+os: linux
 services:
-- docker
-before_install:
-- nvm install 4
-- nvm use 4
+  - docker
 install:
-- pip install ansible==2.3.1.0
-- pip install molecule==1.25.0
-- pip install docker
+  - pip install pipenv
+  - pipenv sync
+env:
+  jobs:
+    - MOLECULE_DISTRO=debian:buster-slim
 script:
-- travis_wait 30 molecule test --driver docker
+  - travis_wait 30 pipenv run molecule test
+
 deploy:
   provider: npm
   email: labs@idealista.com
@@ -22,3 +22,11 @@ deploy:
     tags: true
     repo: idealista/yatm
   skip_cleanup: true
+
+notifications:
+  email:
+    if: branch = master
+    on_success: change
+    on_failure: always
+    recipients:
+      - desarrollo.benders@idealista.com

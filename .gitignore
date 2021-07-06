@@ -16,3 +16,6 @@
 
 ### Build ###
 deps
+build
+
+node_modules
