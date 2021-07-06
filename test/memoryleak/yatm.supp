@@ -73,3 +73,12 @@
    fun:_dl_allocate_tls
    fun:allocate_stack
 }
+
+{
+   mismatched free() / delete / delete []
+   Memcheck:Free
+   fun:free
+   fun:free_key_mem
+   ...
+   fun:*HandleApiCall*
+}

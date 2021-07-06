@@ -1,0 +1,7 @@
+---
+
+file: 
+  /opt/yatm/reports/memoryleak.txt:
+    exists: true
+    contains:
+      - "ERROR SUMMARY: 0 errors from 0 contexts"

@@ -1,6 +1,7 @@
 ![Logo](https://raw.githubusercontent.com/idealista/yatm/master/logo.gif)
 
-[![Build Status](https://travis-ci.org/idealista/yatm.svg?branch=master)](https://travis-ci.org/idealista/yatm)
+[![Build Status](https://travis-ci.com/idealista/yatm.svg?branch=master)](https://travis-ci.com/idealista/yatm)
+[![npm version](https://badge.fury.io/js/yatm.svg)](https://badge.fury.io/js/yatm)
 
 # YATM - Yet Another Thumbnail Manager
 
@@ -21,8 +22,9 @@ A Node.js module that provides access to the VIPS library and Exiv2 in order to 
 
 ### Prerequisities
 
-Node.js installed. Tested with v8.9.1.
+Node.js installed. Tested with v14.17.0.
 
+In version 2.0.0, the support for nodejs <= 8 and debian != buster is discontinued and not tested.  
 
 ## Installation
 
@@ -109,11 +111,9 @@ $ molecule test
 
 ## Built With
 
-![Node.js](https://img.shields.io/badge/Node.js-8.9.1-green.svg)
-
-![Ansible](https://img.shields.io/badge/ansible-2.3.1.0-green.svg)
-
-![Molecule](https://img.shields.io/badge/molecule-1.25.0-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-2.9.14-green.svg)
+![Molecule](https://img.shields.io/badge/molecule-3.0.4-green.svg)
+![Goss](https://img.shields.io/badge/goss-0.3.16-green.svg)
 
 
 ## Versioning
