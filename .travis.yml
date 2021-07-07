@@ -1,34 +1,32 @@
----
 language: python
-python: "3.7"
+python: '3.7'
 os: linux
 services:
-  - docker
+- docker
 install:
-  - pip install pipenv
-  - pipenv sync
+- pip install pipenv
+- pipenv sync
 env:
   jobs:
-    - MOLECULE_DISTRO=debian:buster-slim
+  - MOLECULE_DISTRO=debian:buster-slim
 before_script:
-  - npm install -g npm@'>=3'
+- nvm install 8
+- nvm use 8
 script:
-  - pipenv run molecule test
-
+- pipenv run molecule test
 deploy:
   provider: npm
   email: labs@idealista.com
   api_key:
-    secure: QP5udTO6gsQnznEcJj687PdDGIZ8JR1SGgpdjbkApO4IsqTz3RKQ4TSwq5T3RgrKniQ8UdI3SePeVydI5fqBIm2Is0DJEMRDLna/buB0N0jMcLGRpJVSaLMxBc/QJ8DmTh5RufRf6MKxU11sqlnVSrjyc4NOUg5yb8vYQQjvLROrqKK1pGAuveatYW3QPBdo4l2fL+cE0MPL3O/Uik4VHmETaQ7FUJSvyl06XwePCvyooXkMiQASdkC2ieEBKYA0O8O5Yw7qiL7EqA9ECVtAWlTwgxGNyWHemFgChSpyPBrdqrbKOJtnTDJfmiXdgDCfNSwaWv+2HvPlU2tN+hKHgbT+QReIw/GY1r/hhJ+NXvTzqyTqnuQDZhnBk1ysqDloMT42xEsfbPKd0xjLYMbN/vv14RMtBqm17u2cBjfZO2TFQI8ImQU1cZJfqd7vxj0gSQTnCuwmOyNpM1jVuSsMx0K+fxPhJbsGNVP6UaMwtbBWneVQb1zSyjgeWvFL+slt49ULlgX6nQH0xVy/fOluPfoNV7M9A0KfWDH3DrQ7zvkUIR8gKE340vbAf0mhQjY5NVTGmeV9v9nYA9vXEIvhb9W4XcSdBMEGG99gqyVhLJb5ygxEWYP25QaivCNvwtaOM8k8Gt6U/dgHHtXB8WMvzXpLPvGDgDfuukPS2npJH30=
+    secure: TtCIDHCUb0cy1mmiQMIStvmM8HgfKJqcXJUyvP4QwKim3/94JcorI2JWQuq4hQJIMxP0SYLl0EzO8Lh4fX+GRyGPuLVIR9B5wgME/9kCa20STK2osHTkhm/63kM3NYvLO8pSvFQHuOFhhZZVXSUaHCxe6VApn4ZKObpFeLK3fUzHbxTvVUseva37vjFgnkOASIP4Q5JxqgnB+t2mu5k95qsPKvY3jhayYHwRDYb9uiNcWTIxe4Dwj4lWTM3re6EhOwdZjCC7Y+RN3nDYHERfKzcAC7tRjF2cCkWmeW+mGqKCy15Z+ITrw9u+eSfXPPq4KHlYy2DI5O1KEN58Ntwtls441FQyV1i/bPl1Ttgysz6q6JCw+atTnfXDaKwgJwb6/N6IBMLgkIYA5KLlXIrpyaJ2bEQq47dGtyEBlwTmRevIYNibc6B5ywSUXwYy+zQ5HCDKZ84pEc/GM1LjZ/oaUu1tzf2lMnwzvfX/GZ3wr8Sv/zGCKDcAbHAbt7vkxeG4dcrrjP0hIdJLKjZIVHv6Bhxthd6Ow17H1PwEU8a9X1/lV3i29yPs5RbY2nzxhoW9xlllFjWweEbvvxtVpOSTJxQ8gKyP0Naf+8ubrftvyXrz+PIuJ/yO81+fZG0bP3O69FeQGARu8fIRZRl1xfJOXr0hOO2RGz7pknkPk3SegfQ=
   on:
     tags: true
     repo: idealista/yatm
   skip_cleanup: true
-
 notifications:
   email:
     if: branch = master
     on_success: change
     on_failure: always
     recipients:
-      - desarrollo.benders@idealista.com
+    - desarrollo.benders@idealista.com
