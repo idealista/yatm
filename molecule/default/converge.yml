@@ -11,6 +11,10 @@
         state: present
       with_items:
         - libturbojpeg0-dev
+        - libtiff-dev
+        - libgsf-1-dev
+        - liblcms2-dev
+        - libimagequant-dev
 
   roles:
     - exiv2

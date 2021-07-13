@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/yatm/tree/develop)
 
+## [2.1.0](https://github.com/idealista/yatm/tree/2.1.0)
+### Added
+- [#33](https://github.com/idealista/yatm/issues/33) *Use libvips 8.11.2* @jmonterrubio
+### Fixed
+- [#33](https://github.com/idealista/yatm/issues/33) *Add missed dependencies* @jmonterrubio
+
 ## [2.0.0](https://github.com/idealista/yatm/tree/2.0.0)
 ### Added
 - [#20](https://github.com/idealista/yatm/issues/20) *Adding support to Debian Buster and NodeJS 14* @jmonterrubio

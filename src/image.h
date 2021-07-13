@@ -15,7 +15,9 @@ namespace image {
         UNKNOWN,
         JPEG,
         PNG,
-        MAGICK // GIF ones
+        GIF,
+        TIFF,
+        WEBP
     };
 
     void Prepare(char const *argv);
