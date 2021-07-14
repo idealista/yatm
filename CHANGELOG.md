@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/yatm/tree/develop)
+### Fixed
+- [#36](https://github.com/idealista/yatm/issues/36) *Fix segmentation fault* @jmonterrubio
 
 ## [2.1.0](https://github.com/idealista/yatm/tree/2.1.0)
 ### Added
