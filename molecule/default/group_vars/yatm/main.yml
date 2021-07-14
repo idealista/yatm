@@ -1,8 +1,8 @@
 ---
 nodejs_version: 14.17.0
 
-vips_version: 8.5.9
-# vips_force_reinstall: true
+vips_version: 8.11.2
+#vips_force_reinstall: true
 
 yatm_install_path: /opt/yatm
 
@@ -28,6 +28,10 @@ yatm_build_libraries:
     - /usr/lib/x86_64-linux-gnu/libICE
     - /usr/lib/x86_64-linux-gnu/libpng
     - /usr/lib/x86_64-linux-gnu/libturbojpeg
+    - /usr/lib/x86_64-linux-gnu/libtiff
+    - /usr/lib/x86_64-linux-gnu/libgsf-1
+    - /usr/lib/x86_64-linux-gnu/liblcms2
+    - /usr/lib/x86_64-linux-gnu/libimagequant
     - /usr/lib/x86_64-linux-gnu/libgmodule-2.0
     - /usr/lib/x86_64-linux-gnu/libgobject-2.0
     - /usr/lib/x86_64-linux-gnu/libglib-2.0

@@ -86,7 +86,7 @@ namespace image {
 
     Image* Init(void *buffer, size_t const length) {
         Image *thumb = NULL;
-        VipsImage *out = vips_image_new_from_buffer(buffer, length, NULL, "access", VIPS_ACCESS_RANDOM, NULL);
+        VipsImage *out = vips_image_new_from_buffer(buffer, length, "", "access", VIPS_ACCESS_RANDOM, "memory", true, NULL);
         if (out != NULL) {
             thumb = new Image;
             thumb->img = out;
@@ -96,7 +96,7 @@ namespace image {
 
     Image* Init(char const *path) {
         Image *thumb = NULL;
-        VipsImage *out =  vips_image_new_from_file(path, "access", VIPS_ACCESS_RANDOM, NULL);
+        VipsImage *out =  vips_image_new_from_file(path, "access", VIPS_ACCESS_RANDOM, "memory", true, NULL);
         if (out != NULL) {
             thumb = new Image;
             thumb->img = out;
@@ -113,8 +113,12 @@ namespace image {
                 imageType = Type::JPEG;
             } else if (EndsWith(loader, "PngBuffer")) {
                 imageType = Type::PNG;
-            } else if (EndsWith(loader, "MagickBuffer")) {
-                imageType = Type::MAGICK;
+            } else if (EndsWith(loader, "MagickBuffer") || EndsWith(loader, "gifBuffer")) {
+                imageType = Type::GIF;
+            } else if (EndsWith(loader, "TiffBuffer")) {
+                imageType = Type::TIFF;
+            } else if (EndsWith(loader, "WebpBuffer")) {
+                imageType = Type::WEBP;
             } else {
                 imageType = Type::UNSUPPORTED;
             }
@@ -129,10 +133,14 @@ namespace image {
             std::string loader = load;
             if (EndsWith(loader, "JpegFile")) {
                 imageType = Type::JPEG;
-            } else if (EndsWith(loader, "Png")) {
+            } else if (EndsWith(loader, "PngFile")) {
                 imageType = Type::PNG;
-            } else if (EndsWith(loader, "Magick") || EndsWith(loader, "MagickFile")) {
-                imageType = Type::MAGICK;
+            } else if (EndsWith(loader, "Magick") || EndsWith(loader, "MagickFile") || EndsWith(loader, "gifFile")) {
+                imageType = Type::GIF;
+            } else if (EndsWith(loader, "TiffFile")) {
+                imageType = Type::TIFF;
+            } else if (EndsWith(loader, "WebpFile")) {
+                imageType = Type::WEBP;
             } else {
                 imageType = Type::UNSUPPORTED;
             }
