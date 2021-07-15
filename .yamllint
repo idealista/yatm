@@ -5,6 +5,7 @@ extends: default
 ignore: |
   molecule/**/tests/
   node_modules
+  .travis.yml
 
 rules:
   braces:
