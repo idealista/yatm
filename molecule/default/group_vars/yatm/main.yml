@@ -1,8 +1,9 @@
 ---
+
 nodejs_version: 14.17.0
 
 vips_version: 8.11.2
-#vips_force_reinstall: true
+# vips_force_reinstall: true
 
 yatm_install_path: /opt/yatm
 
