@@ -2,7 +2,7 @@
 
 nodejs_version: 14.17.0
 
-vips_version: 8.10.0
+vips_version: 8.5.9
 
 yatm_install_path: /opt/yatm
 
