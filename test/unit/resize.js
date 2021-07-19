@@ -1,8 +1,12 @@
 'use strict';
 
+var fs = require('fs');
 var thumb = require('../../index');
 
 var image1 = 'test/unit/images/1.png';
+var buffer1 = fs.readFileSync(image1);
+var image2 = 'test/unit/images/1.jpg';
+var buffer2 = fs.readFileSync(image2);
 
 module.exports = {
     setUp : function(callback) {
@@ -17,6 +21,39 @@ module.exports = {
     },
     testResizeBasic: function(assert) {
         thumb(image1)
+        .resize(this.options.width,this.options.height)
+        .toBuffer(
+            function (err, data) {
+                assert.ok(!err, 'unexpected error: ' + err);
+                assert.notEqual(data, undefined);
+                assert.done();
+            }
+        );
+    },
+    testResizeBasicBuffer: function(assert) {
+        thumb(buffer1)
+        .resize(this.options.width,this.options.height)
+        .toBuffer(
+            function (err, data) {
+                assert.ok(!err, 'unexpected error: ' + err);
+                assert.notEqual(data, undefined);
+                assert.done();
+            }
+        );
+    },
+    testResizeBasicJpg: function(assert) {
+        thumb(image2)
+        .resize(this.options.width,this.options.height)
+        .toBuffer(
+            function (err, data) {
+                assert.ok(!err, 'unexpected error: ' + err);
+                assert.notEqual(data, undefined);
+                assert.done();
+            }
+        );
+    },
+    testResizeBasicBufferJpg: function(assert) {
+        thumb(buffer2)
         .resize(this.options.width,this.options.height)
         .toBuffer(
             function (err, data) {

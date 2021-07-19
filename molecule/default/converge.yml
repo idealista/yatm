@@ -10,7 +10,7 @@
         pkg: "{{ item }}"
         state: present
       with_items:
-        - libturbojpeg0-dev
+        - libjpeg62-turbo-dev
         - libtiff-dev
         - libgsf-1-dev
         - liblcms2-dev
