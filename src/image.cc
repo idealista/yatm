@@ -86,7 +86,7 @@ namespace image {
 
     Image* Init(void *buffer, size_t const length) {
         Image *thumb = NULL;
-        VipsImage *out = vips_image_new_from_buffer(buffer, length, "", "access", VIPS_ACCESS_RANDOM, NULL);
+        VipsImage *out = vips_image_new_from_buffer(buffer, length, NULL, "access", VIPS_ACCESS_RANDOM, NULL);
         if (out != NULL) {
             thumb = new Image;
             thumb->img = out;
