@@ -1,8 +1,8 @@
 {
-    "name": "yatm",
+    "name": "yatm2",
     "description": "Yet Another Thumbnail Manager. A libvips wrapper for Node.js",
     "author": "idealista <labs@idealista.com> (http://www.idealista.com/labs/blog/)",
-    "version": "2.1.2",
+    "version": "2.1.3",
     "homepage": "https://github.com/idealista/yatm",
     "private": false,
     "dependencies": {
