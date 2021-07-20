@@ -3,9 +3,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/yatm/tree/develop)
+## [2.1.3](https://github.com/idealista/yatm/tree/2.1.3)
+### Fixed
+- [#36](https://github.com/idealista/yatm/issues/36) *Add more missed dependencies* @jmonterrubio
+
 ## [2.1.2](https://github.com/idealista/yatm/tree/2.1.2)
 ### Fixed
 - [#36](https://github.com/idealista/yatm/issues/36) *Fix another segmentation fault* @jmonterrubio
+
 ## [2.1.1](https://github.com/idealista/yatm/tree/2.1.1)
 ### Fixed
 - [#36](https://github.com/idealista/yatm/issues/36) *Fix segmentation fault* @jmonterrubio
