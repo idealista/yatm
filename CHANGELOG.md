@@ -4,7 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/yatm/tree/develop)
 ### Fixed
-- [#51](https://github.com/idealista/yatm/issues/51) *Raise the CI Python to 3.9 and docker-py to 7.2.0, and refresh the Python dependency set: the 3.7 pin and docker-py 4.2.2, not Ansible, were what blocked cryptography, urllib3, requests, pynacl, zipp, pygments and idna* @danieljesus
+- [#51](https://github.com/idealista/yatm/issues/51) *Migrate the CI stack to Ansible 8 and molecule 6 on Python 3.10: molecule 3.0.4 was capping paramiko, sh and PyYAML, and the PyYAML cap is what pinned the whole project to an old Python* @danieljesus
+- [#51](https://github.com/idealista/yatm/issues/51) *Pin community.docker 4.6.1, since the 3.4.11 bundled with Ansible 8 predates the requests 2.32 hotfix for its vendored Docker SDK* @danieljesus
 - [#51](https://github.com/idealista/yatm/issues/51) *Add npm overrides so the transitive dev dependencies capped by jshint and istanbul can be patched, and update nan and grunt to their latest releases* @danieljesus
 
 ## [2.1.4](https://github.com/idealista/yatm/tree/2.1.4)

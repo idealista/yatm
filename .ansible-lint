@@ -1,10 +1,9 @@
 ---
 
 # ansible-lint 24 replaced the numeric rule ids this file used to skip (204,
-# 303, 503) with named ones, and its default profile is far stricter than 4.2.0
-# was. `min` keeps the checks that catch real breakage without turning the
-# upgrade into a style rewrite. See #51.
-profile: min
+# 303, 503) with named ones. The tree turned out to pass the strictest profile
+# as it stands, so there is no reason to ask for less. See #51.
+profile: production
 
 exclude_paths:
   - .cache/
