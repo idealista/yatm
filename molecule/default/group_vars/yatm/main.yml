@@ -4,6 +4,11 @@ nodejs_version: 14.17.0
 
 vips_version: 8.5.9
 
+# vips_role 2.0.0 moved these out of vips_required_libs
+vips_optional_dependencies:
+    - libexif-dev
+    - libmagick-dev
+
 yatm_install_path: /opt/yatm
 
 yatm_build_files:

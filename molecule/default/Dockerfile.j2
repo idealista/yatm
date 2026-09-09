@@ -6,4 +6,13 @@ FROM {{ item.registry.url }}/{{ item.image }}
 FROM {{ item.image }}
 {% endif %}
 
+# Debian buster is EOL and its suites were moved out of deb.debian.org into
+# archive.debian.org, so apt-get update returns 404 against the default
+# mirrors. Repoint them before installing anything.
+RUN if [ -f /etc/apt/sources.list ] && grep -q buster /etc/apt/sources.list; then \
+      sed -i -e 's|http://deb.debian.org|http://archive.debian.org|g' \
+             -e 's|http://security.debian.org|http://archive.debian.org|g' \
+             /etc/apt/sources.list; \
+    fi
+
 RUN if [ $(command -v apt-get) ]; then apt-get update && apt-get upgrade -y && apt-get install -y python sudo bash ca-certificates systemd systemd-sysv && apt-get clean; fi

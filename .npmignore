@@ -7,6 +7,5 @@ test
 .travis.yml
 Pipfile
 Pipfile.lock
-test-requirements.txt
-.asible-lint
+.ansible-lint
 .yamllint
