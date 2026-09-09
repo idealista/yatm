@@ -4,9 +4,6 @@ dependency:
   name: galaxy
 driver:
   name: docker
-lint: |
-  yamllint .
-  ansible-lint .
 
 platforms:
   - name: yatm
@@ -25,8 +22,5 @@ platforms:
 
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
 verifier:
   name: ansible
-  directory: ./tests
