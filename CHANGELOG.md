@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased](https://github.com/idealista/yatm/tree/develop)
 ### Fixed
 - [#45](https://github.com/idealista/yatm/issues/45) *Update vulnerable npm and Python dependencies reported by Dependabot* @danieljesus
+- [#44](https://github.com/idealista/yatm/issues/44) *Fix the molecule build: point apt at archive.debian.org and update the galaxy roles to versions that work with Ansible 2.9* @danieljesus
 - [#44](https://github.com/idealista/yatm/issues/44) *Point the molecule container at archive.debian.org, buster is EOL* @danieljesus
 
 ## [2.1.3](https://github.com/idealista/yatm/tree/2.1.3)

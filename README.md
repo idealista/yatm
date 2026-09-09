@@ -106,12 +106,16 @@ $ ./test/memoryleak/memoryleak.sh
 * Full testing, that creates a docker container and installs all dependencies
 
 ```
-$ molecule test
+$ pip install pipenv
+$ pipenv sync
+$ pipenv run molecule test
 ```
+
+The scenario builds a `debian:buster-slim` container; `MOLECULE_DISTRO` overrides that image.
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-2.9.14-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-2.9.27-green.svg)
 ![Molecule](https://img.shields.io/badge/molecule-3.0.4-green.svg)
 ![Goss](https://img.shields.io/badge/goss-0.3.16-green.svg)
 
