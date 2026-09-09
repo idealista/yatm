@@ -1,19 +1,29 @@
 ---
 
+# Ansible 8.7.0 bundles community.docker 3.4.11, which predates the 3.10.1
+# hotfix for requests 2.32: its vendored Docker SDK rejects the http+docker
+# URL scheme and every molecule action dies at "Error connecting". Pinning the
+# collection here fixes it without moving off ansible-core 2.15, which is the
+# last release that still accepts the `include:` the galaxy roles use. See #51.
+collections:
+  - name: community.docker
+    version: 4.6.1
+
 # Galaxy still serves 1.0.1 of both roles: the idealista namespace has not been
 # re-imported since 2021, so the releases carrying the Ansible 2.9 fixes are
 # only reachable from git. Switch back to `idealista.<role>` once it is.
 
-- src: https://github.com/idealista/exiv2-role.git
-  scm: git
-  version: 1.0.3
-  name: exiv2
+roles:
+  - src: https://github.com/idealista/exiv2-role.git
+    scm: git
+    version: 1.0.3
+    name: exiv2
 
-- src: https://github.com/idealista/vips_role.git
-  scm: git
-  version: 2.0.2
-  name: vips
+  - src: https://github.com/idealista/vips_role.git
+    scm: git
+    version: 2.0.2
+    name: vips
 
-- src: idealista.nodejs-role
-  version: 1.1.0
-  name: nodejs
+  - src: idealista.nodejs-role
+    version: 1.1.0
+    name: nodejs
