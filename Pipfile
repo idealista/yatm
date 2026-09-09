@@ -6,14 +6,14 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-ansible = "==2.9.27"
-molecule = "==3.0.4"
-docker = "==4.2.2"
-ansible-lint = "==4.2.0"
-# Security floors for transitive dependencies, see #45
-certifi = ">=2024.7.4"
-cryptography = ">=42.0.4"
-cookiecutter = ">=2.1.1"
+# Ansible 8 is ansible-core 2.15, the last release that still accepts the bare
+# `include:` directive. All three galaxy roles this project consumes use it, so
+# going further would mean changing them. See #51.
+ansible = "==8.7.0"
+molecule = "==6.0.3"
+molecule-plugins = {version = "==23.6.0", extras = ["docker"]}
+ansible-lint = "==24.12.2"
+docker = "==7.2.0"
 
 [requires]
-python_version = "3"
+python_version = "3.10"

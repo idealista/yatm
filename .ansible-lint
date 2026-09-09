@@ -1,14 +1,15 @@
- 
+---
+
+# ansible-lint 24 replaced the numeric rule ids this file used to skip (204,
+# 303, 503) with named ones. The tree turned out to pass the strictest profile
+# as it stands, so there is no reason to ask for less. See #51.
+profile: production
+
 exclude_paths:
-  - ./molecule
-  - ./node_modules
-  - ./tests
-  - ./reports
-  - ./build
-parseable: true
-skip_list:
-  - '204'
-  - '503'
-  - '303'
-use_default_rules: true
-verbosity: 1
+  - .cache/
+  - build/
+  - deps/
+  - molecule/
+  - node_modules/
+  - reports/
+  - tests/
