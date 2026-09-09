@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/yatm/tree/develop)
+### Fixed
+- [#51](https://github.com/idealista/yatm/issues/51) *Raise the CI Python to 3.9 and docker-py to 7.2.0, and refresh the Python dependency set: the 3.7 pin and docker-py 4.2.2, not Ansible, were what blocked cryptography, urllib3, requests, pynacl, zipp, pygments and idna* @danieljesus
+- [#51](https://github.com/idealista/yatm/issues/51) *Add npm overrides so the transitive dev dependencies capped by jshint and istanbul can be patched, and update nan and grunt to their latest releases* @danieljesus
 
 ## [2.1.4](https://github.com/idealista/yatm/tree/2.1.4)
 ### Fixed

@@ -8,12 +8,30 @@ verify_ssl = true
 [packages]
 ansible = "==2.9.27"
 molecule = "==3.0.4"
-docker = "==4.2.2"
+docker = "==7.2.0"
 ansible-lint = "==4.2.0"
 # Security floors for transitive dependencies, see #45
 certifi = ">=2024.7.4"
-cryptography = ">=42.0.4"
 cookiecutter = ">=2.1.1"
+# docker-py 4.2.2 is what pinned requests and urllib3 down: it registers an
+# http+docker:// scheme that requests 2.32 rejects, and it passes a `chunked`
+# kwarg that urllib3 2.x removed. molecule 3.0.4 declares `docker>=2.0.0` with
+# no upper bound, so 7.2.0 is allowed and lifts both ceilings. See #51.
+# More security floors, see #51. These are the newest releases that still
+# support Python 3.9; urllib3 2.7, requests 2.33 and zipp 4 all require 3.10,
+# where Ansible 2.9 does not run.
+cryptography = ">=50.0.1"
+urllib3 = ">=2.6.3"
+requests = ">=2.32.4"
+idna = ">=3.19"
+pynacl = ">=1.6.2"
+zipp = ">=3.19.1"
+pygments = ">=2.21.0"
+paramiko = ">=2.12.0"
+# Ansible 2.9 declares jinja2 with no upper bound, but 3.1 removed the
+# contextfilter and environmentfilter decorators that its filter plugins use.
+# Without this cap a fresh resolve silently picks 3.1 and breaks templating.
+jinja2 = "<3.1"
 
 [requires]
 python_version = "3"
