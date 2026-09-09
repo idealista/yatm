@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Fixed
 - [#45](https://github.com/idealista/yatm/issues/45) *Update vulnerable npm and Python dependencies reported by Dependabot* @danieljesus
 - [#44](https://github.com/idealista/yatm/issues/44) *Fix the molecule build: point apt at archive.debian.org, as buster is EOL, and bump the exiv2 and vips roles to versions that work with Ansible 2.9* @danieljesus
+- [#49](https://github.com/idealista/yatm/issues/49) *Remove the orphaned test-requirements.txt: nothing installs from it and its stale pins kept 30 Dependabot alerts open* @danieljesus
 
 ## [2.1.3](https://github.com/idealista/yatm/tree/2.1.3)
 ### Fixed
