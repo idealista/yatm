@@ -3,10 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/yatm/tree/develop)
+
+## [2.1.4](https://github.com/idealista/yatm/tree/2.1.4)
 ### Fixed
 - [#45](https://github.com/idealista/yatm/issues/45) *Update vulnerable npm and Python dependencies reported by Dependabot* @danieljesus
-- [#44](https://github.com/idealista/yatm/issues/44) *Fix the molecule build: point apt at archive.debian.org and update the galaxy roles to versions that work with Ansible 2.9* @danieljesus
-- [#44](https://github.com/idealista/yatm/issues/44) *Point the molecule container at archive.debian.org, buster is EOL* @danieljesus
+- [#44](https://github.com/idealista/yatm/issues/44) *Fix the molecule build: point apt at archive.debian.org, as buster is EOL, and bump the exiv2 and vips roles to versions that work with Ansible 2.9* @danieljesus
 
 ## [2.1.3](https://github.com/idealista/yatm/tree/2.1.3)
 ### Fixed
